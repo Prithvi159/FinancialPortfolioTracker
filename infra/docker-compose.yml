@@ -4,9 +4,9 @@ services:
   postgres:
     image: postgres:15
     environment:
-      POSTGRES_DB: finsight
-      POSTGRES_USER: finsight
-      POSTGRES_PASSWORD: finsight_pass
+      POSTGRES_DB: portfolio_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
     volumes:
       - pgdata:/var/lib/postgresql/data
     ports:
@@ -16,11 +16,11 @@ services:
     build:
       context: ../backend
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/finsight
-      SPRING_DATASOURCE_USERNAME: finsight
-      SPRING_DATASOURCE_PASSWORD: finsight_pass
-      JWT_SECRET: your_jwt_secret
-      ALPHA_VANTAGE_API_KEY: your_alpha_vantage_key
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/portfolio_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 1234
+      JWT_SECRET: ThisIsA64CharacterLongSecretKeyForJWTThatIsSecureEnough1234567890
+      ALPHA_VANTAGE_API_KEY: SWOFE0U34COPSFSW
     ports:
       - "8080:8080"
     depends_on:
