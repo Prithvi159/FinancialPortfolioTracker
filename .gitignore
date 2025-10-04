@@ -1,0 +1,56 @@
+# FRONTEND (React)
+frontend/node_modules
+frontend/.env
+frontend/build
+frontend/dist
+frontend/.next
+frontend/.DS_Store
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/package-lock.json
+
+# BACKEND (Spring Boot)
+backend/target
+backend/.idea
+backend/.classpath
+backend/.project
+backend/.settings/
+backend/.mvn/
+backend/.env
+backend/application-local.properties
+backend/*.log
+
+# DATABASE / Docker
+infra/pgdata
+infra/*.env
+*.env
+*.log
+*.pid
+
+# SYSTEM / MISC
+.DS_Store
+Thumbs.db
+*.iml
+# .vscode/
+.idea/
+
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### VS Code ###
+.vscode/
+.metadata/
+*/.metadata/

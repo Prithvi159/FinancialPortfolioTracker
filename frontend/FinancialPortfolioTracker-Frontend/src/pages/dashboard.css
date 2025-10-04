@@ -1,0 +1,55 @@
+.dashboard-container {
+  padding: 32px;
+  background-color: #f9fafc;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.dashboard-title {
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.portfolio-select {
+  min-width: 250px;
+}
+
+.create-btn {
+  background: linear-gradient(90deg, #1976d2 0%, #42a5f5 100%);
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  text-transform: none;
+  transition: all 0.2s ease;
+}
+
+.create-btn:hover {
+  background: linear-gradient(90deg, #1565c0 0%, #2196f3 100%);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 16px;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .portfolio-select {
+    width: 100%;
+  }
+}

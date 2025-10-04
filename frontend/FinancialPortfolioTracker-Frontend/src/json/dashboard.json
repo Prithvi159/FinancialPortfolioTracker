@@ -1,0 +1,58 @@
+{
+  "title": "Portfolio Dashboard",
+  "buttons": {
+    "createPortfolio": "Create New Portfolio",
+    "addAsset": "Add Asset",
+    "removeAsset": "Remove",
+    "viewHistorical": "View Historical Chart"
+  },
+  "fields": {
+    "portfolioSelect": {
+      "placeholder": "Select Portfolio"
+    },
+    "assetInputs": [
+      {
+        "name": "ticker",
+        "type": "text",
+        "placeholder": "Ticker (e.g., AAPL)"
+      },
+      {
+        "name": "quantity",
+        "type": "number",
+        "placeholder": "Quantity"
+      }
+    ]
+  },
+  "tables": {
+    "assets": {
+      "columns": [
+        { "header": "Ticker", "field": "ticker" },
+        { "header": "Quantity", "field": "quantity" },
+        { "header": "Current Price", "field": "currentPrice" },
+        { "header": "Total Value", "field": "totalValue" },
+        { "header": "Actions", "field": "actions" }
+      ]
+    }
+  },
+  "charts": {
+    "pie": {
+      "title": "Asset Allocation",
+      "colors": [
+        "#FF6384",
+        "#36A2EB",
+        "#FFCE56",
+        "#4BC0C0",
+        "#9966FF",
+        "#FF9F40"
+      ]
+    },
+    "line": {
+      "title": "Historical Price Chart",
+      "lineColor": "blue"
+    }
+  },
+  "insights": {
+    "title": "AI Insights",
+    "fields": ["diversificationScore", "recommendation"]
+  }
+}

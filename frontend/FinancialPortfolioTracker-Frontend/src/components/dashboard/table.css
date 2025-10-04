@@ -1,0 +1,42 @@
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.asset-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 600px;
+}
+
+.asset-table th {
+  background: #1976d2;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.asset-table td {
+  text-align: center;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.asset-table tr:hover {
+  background-color: #f8f9fa;
+}
+
+.view-btn {
+  margin-left: 8px;
+  color: #1565c0;
+}
+
+.view-btn:hover {
+  background-color: rgba(25, 118, 210, 0.1);
+}

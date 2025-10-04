@@ -1,0 +1,28 @@
+{
+  "title": {
+    "login": "Login",
+    "register": "Register"
+  },
+  "fields": [
+    {
+      "name": "username",
+      "type": "text",
+      "placeholder": "Username"
+    },
+    {
+      "name": "password",
+      "type": "password",
+      "placeholder": "Password"
+    }
+  ],
+  "buttons": {
+    "submit": {
+      "login": "Login",
+      "register": "Register"
+    },
+    "toggle": {
+      "login": "Switch to Register",
+      "register": "Switch to Login"
+    }
+  }
+}
