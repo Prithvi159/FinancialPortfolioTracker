@@ -23,8 +23,6 @@ The **Financial Portfolio Tracker** allows users to:
 - 📊 Visualize performance using **interactive charts**
 - 🤖 Get diversification insights powered by the **Alpha Vantage API**
 
-This project follows **clean architecture**, **industry-standard folder structuring**, and **scalable React + Spring Boot best practices**.
-
 ---
 
 ## ⚙️ Tech Stack
