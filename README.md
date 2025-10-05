@@ -103,3 +103,53 @@ sequenceDiagram
     Frontend->>Backend: Include JWT in Authorization header
     Backend->>DB: Fetch protected resources
 ```
+
+### 🔹 Entity Relationship Diagram
+
+```mermaid
+erDiagram
+    USER ||--o{ PORTFOLIO : owns
+    PORTFOLIO ||--o{ ASSET : contains
+
+    USER {
+        bigint id PK
+        string username
+        string password
+    }
+
+    PORTFOLIO {
+        bigint id PK
+        string name
+        bigint user_id FK
+    }
+
+    ASSET {
+        bigint id PK
+        string ticker
+        double quantity
+        bigint portfolio_id FK
+    }
+```
+
+### 🔹 Entity Relationship Diagram
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Frontend
+    participant Backend
+    participant DB
+    participant API
+
+    User->>Frontend: Create Portfolio (UI)
+    Frontend->>Backend: POST /portfolios?name=MyPortfolio
+    Backend->>DB: Save portfolio record
+    Backend-->>Frontend: Portfolio created
+
+    User->>Frontend: Add Asset (Ticker + Quantity)
+    Frontend->>Backend: POST /portfolios/{id}/assets
+    Backend->>API: Fetch latest stock price (Alpha Vantage)
+    API-->>Backend: Return current price
+    Backend->>DB: Save asset with updated valuation
+    Backend-->>Frontend: Asset added successfully
+```
