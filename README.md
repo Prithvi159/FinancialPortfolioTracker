@@ -11,7 +11,6 @@ A **full-stack financial portfolio management platform** built using **React (Vi
 | 🌐 Frontend | **Vercel** | [https://financial-portfolio-tracker-omega.vercel.app](https://financial-portfolio-tracker-omega.vercel.app) |
 | ⚙️ Backend | **Render** | [https://financialportfoliotracker-v5d8.onrender.com](https://financialportfoliotracker-v5d8.onrender.com) |
 | 💾 Database | **Render PostgreSQL** | Managed Cloud DB |
-| 📁 GitHub Repo | **GitHub** | [https://github.com/Prithvi159/FinancialPortfolioTracker](https://github.com/Prithvi159/FinancialPortfolioTracker) |
 
 ---
 
@@ -74,36 +73,6 @@ flowchart TD
     Auth[Spring Security + JWT] --> Controller
 ```
 
-### 🔹 Frontend Component Hierarchy
-```mermaid
-graph TD
-    App[App.jsx] --> Login[Login.jsx]
-    App --> Dashboard[Dashboard.jsx]
-    Dashboard --> AssetForm[AssetForm.jsx]
-    Dashboard --> AssetTable[AssetTable.jsx]
-    Dashboard --> Charts[Charts.jsx]
-    Dashboard --> Insights[Insights.jsx]
-    Dashboard --> PortfolioDialog[PortfolioDialog.jsx]
-    Dashboard --> PortfolioSelector[PortfolioSelector.jsx]
-```
-
-### 🔹 Authentication & Data Flow
-```mermaid
-sequenceDiagram
-    participant User
-    participant Frontend
-    participant Backend
-    participant DB
-
-    User->>Frontend: Enter credentials
-    Frontend->>Backend: POST /auth/login
-    Backend->>DB: Validate user
-    DB-->>Backend: Return user
-    Backend-->>Frontend: JWT Token
-    Frontend->>Backend: Include JWT in Authorization header
-    Backend->>DB: Fetch protected resources
-```
-
 ### 🔹 Entity Relationship Diagram
 
 ```mermaid
@@ -131,7 +100,24 @@ erDiagram
     }
 ```
 
-### 🔹 Entity Relationship Diagram
+### 🔹 Authentication & Data Flow
+```mermaid
+sequenceDiagram
+    participant User
+    participant Frontend
+    participant Backend
+    participant DB
+
+    User->>Frontend: Enter credentials
+    Frontend->>Backend: POST /auth/login
+    Backend->>DB: Validate user
+    DB-->>Backend: Return user
+    Backend-->>Frontend: JWT Token
+    Frontend->>Backend: Include JWT in Authorization header
+    Backend->>DB: Fetch protected resources
+```
+
+### 🔹 Portfolio Management Flow
 
 ```mermaid
 sequenceDiagram
@@ -152,4 +138,18 @@ sequenceDiagram
     API-->>Backend: Return current price
     Backend->>DB: Save asset with updated valuation
     Backend-->>Frontend: Asset added successfully
+```
+
+### 🔹 Frontend Component Hierarchy
+
+```mermaid
+graph TD
+    App[App.jsx] --> Login[Login.jsx]
+    App --> Dashboard[Dashboard.jsx]
+    Dashboard --> AssetForm[AssetForm.jsx]
+    Dashboard --> AssetTable[AssetTable.jsx]
+    Dashboard --> Charts[Charts.jsx]
+    Dashboard --> Insights[Insights.jsx]
+    Dashboard --> PortfolioDialog[PortfolioDialog.jsx]
+    Dashboard --> PortfolioSelector[PortfolioSelector.jsx]
 ```
