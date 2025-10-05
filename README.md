@@ -61,3 +61,4 @@ graph TD
     B -->|JDBC| C[(PostgreSQL: Render Cloud DB)]
     B -->|External API| D[Alpha Vantage API]
     A -->|JWT Authentication| B
+```
