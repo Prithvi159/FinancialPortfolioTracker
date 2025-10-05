@@ -62,3 +62,35 @@ graph TD
     B -->|External API| D[Alpha Vantage API]
     A -->|JWT Authentication| B
 ```
+
+flowchart TD
+    Controller[REST Controllers] --> Service[Service Layer]
+    Service --> Repository[JPA Repository]
+    Repository --> DB[(PostgreSQL Database)]
+    Service --> API[Alpha Vantage API]
+    Auth[Spring Security + JWT] --> Controller
+
+
+graph TD
+    App[App.jsx] --> Login[Login.jsx]
+    App --> Dashboard[Dashboard.jsx]
+    Dashboard --> AssetForm[AssetForm.jsx]
+    Dashboard --> AssetTable[AssetTable.jsx]
+    Dashboard --> Charts[Charts.jsx]
+    Dashboard --> Insights[Insights.jsx]
+    Dashboard --> PortfolioDialog[PortfolioDialog.jsx]
+    Dashboard --> PortfolioSelector[PortfolioSelector.jsx]
+
+sequenceDiagram
+    participant User
+    participant Frontend
+    participant Backend
+    participant DB
+
+    User->>Frontend: Enter credentials
+    Frontend->>Backend: POST /auth/login
+    Backend->>DB: Validate user
+    DB-->>Backend: Return user
+    Backend-->>Frontend: JWT Token
+    Frontend->>Backend: Include JWT in Authorization header
+    Backend->>DB: Fetch protected resources
