@@ -19,7 +19,7 @@ import com.prithvi.project.fpt.util.JwtUtil;
 
 import lombok.RequiredArgsConstructor;
 
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
