@@ -63,14 +63,16 @@ graph TD
     A -->|JWT Authentication| B
 ```
 
+```mermaid
 flowchart TD
     Controller[REST Controllers] --> Service[Service Layer]
     Service --> Repository[JPA Repository]
     Repository --> DB[(PostgreSQL Database)]
     Service --> API[Alpha Vantage API]
     Auth[Spring Security + JWT] --> Controller
+```
 
-
+```mermaid
 graph TD
     App[App.jsx] --> Login[Login.jsx]
     App --> Dashboard[Dashboard.jsx]
@@ -80,7 +82,9 @@ graph TD
     Dashboard --> Insights[Insights.jsx]
     Dashboard --> PortfolioDialog[PortfolioDialog.jsx]
     Dashboard --> PortfolioSelector[PortfolioSelector.jsx]
+```
 
+```mermaid
 sequenceDiagram
     participant User
     participant Frontend
@@ -94,3 +98,4 @@ sequenceDiagram
     Backend-->>Frontend: JWT Token
     Frontend->>Backend: Include JWT in Authorization header
     Backend->>DB: Fetch protected resources
+```
