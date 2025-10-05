@@ -63,6 +63,7 @@ graph TD
     A -->|JWT Authentication| B
 ```
 
+### 🔹 Backend Architecture
 ```mermaid
 flowchart TD
     Controller[REST Controllers] --> Service[Service Layer]
@@ -72,6 +73,7 @@ flowchart TD
     Auth[Spring Security + JWT] --> Controller
 ```
 
+### 🔹 Frontend Component Hierarchy
 ```mermaid
 graph TD
     App[App.jsx] --> Login[Login.jsx]
@@ -84,6 +86,7 @@ graph TD
     Dashboard --> PortfolioSelector[PortfolioSelector.jsx]
 ```
 
+### 🔹 Authentication & Data Flow
 ```mermaid
 sequenceDiagram
     participant User
