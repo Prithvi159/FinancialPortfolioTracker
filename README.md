@@ -55,10 +55,9 @@ This project follows **clean architecture**, **industry-standard folder structur
 ## 🏗️ System Architecture
 
 ### 🔹 High-Level Architecture
-```mermaid
+
 graph TD
     A[Frontend: React Vite (Vercel)] -->|HTTPS / REST API Calls| B[Backend: Spring Boot (Render)]
     B -->|JDBC| C[(PostgreSQL: Render Cloud DB)]
     B -->|External API| D[Alpha Vantage API]
     A -->|JWT Authentication| B
-```
