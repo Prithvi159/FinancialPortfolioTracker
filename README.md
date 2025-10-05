@@ -30,6 +30,8 @@ This project follows **clean architecture**, **industry-standard folder structur
 
 ## 🏗️ System Architecture
 
+```mermaid
+
 graph TD
     A[Frontend - React.js (Vercel)] -->|HTTPS / REST API Calls| B[Backend - Spring Boot (Render)]
     B -->|JDBC| C[(PostgreSQL - Render Cloud DB)]
