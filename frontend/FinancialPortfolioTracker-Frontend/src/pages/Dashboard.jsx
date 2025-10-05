@@ -1,11 +1,14 @@
 import {
-  Container,
+  AppBar,
+  Toolbar,
   Typography,
-  Button,
+  Container,
   Grid,
+  Box,
+  Button,
   CircularProgress,
   Alert,
-  Box,
+  Divider,
 } from "@mui/material";
 import { AddCircleOutline } from "@mui/icons-material";
 import { useState, useEffect } from "react";
@@ -35,7 +38,12 @@ const Dashboard = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [portfolioName, setPortfolioName] = useState("");
 
-  const { data: portfolios, isLoading: portfoliosLoading, error: portfoliosError } = usePortfoliosQuery();
+  const {
+    data: portfolios,
+    isLoading: portfoliosLoading,
+    error: portfoliosError,
+  } = usePortfoliosQuery();
+
   const createPortfolio = useCreatePortfolioMutation();
   const { data: portfolioData, isLoading: portfolioLoading } = usePortfolioQuery(selectedPortfolio);
   const { data: insights, isLoading: insightsLoading } = useInsightsQuery(selectedPortfolio);
@@ -67,8 +75,15 @@ const Dashboard = () => {
     }
   };
 
-  if (portfoliosLoading) return <CircularProgress />;
-  if (portfoliosError) return <Alert severity="error">Error loading portfolios</Alert>;
+  if (portfoliosLoading)
+    return (
+      <Box className="loader-container">
+        <CircularProgress color="primary" />
+      </Box>
+    );
+
+  if (portfoliosError)
+    return <Alert severity="error">Error loading portfolios</Alert>;
 
   const pieData = {
     labels: portfolioData?.assets.map((a) => a.ticker) || [],
@@ -94,80 +109,107 @@ const Dashboard = () => {
   };
 
   return (
-    <Container className="dashboard-container">
-      <div className="dashboard-header">
-        <Typography variant="h4" className="dashboard-title">
-          {dashboardConfig.title}
-        </Typography>
+    <Box className="dashboard-page">
+      <AppBar position="static" elevation={0} className="dashboard-header-bar">
+        <Toolbar className="dashboard-toolbar">
+          <Typography variant="h6" className="dashboard-brand">
+            FinSight
+          </Typography>
+        </Toolbar>
+      </AppBar>
 
-        <Box display="flex" gap={2} alignItems="center" flexWrap="wrap">
-          <Button
-            variant="contained"
-            className="create-btn"
-            onClick={() => setDialogOpen(true)}
-            startIcon={<AddCircleOutline />}
-          >
-            {dashboardConfig.buttons.createPortfolio}
-          </Button>
+      <Container className="dashboard-container">
+        <div className="dashboard-header">
+          <Typography variant="h4" className="dashboard-title">
+            {dashboardConfig.title}
+          </Typography>
 
-          <PortfolioSelector
-            portfolios={portfolios}
-            selectedPortfolio={selectedPortfolio}
-            onChange={setSelectedPortfolio}
-          />
-        </Box>
-      </div>
+          {portfolios?.length > 0 && (
+            <Box display="flex" gap={2} alignItems="center" flexWrap="wrap">
+              <Button
+                variant="contained"
+                className="create-btn"
+                onClick={() => setDialogOpen(true)}
+                startIcon={<AddCircleOutline />}
+              >
+                {dashboardConfig.buttons.createPortfolio}
+              </Button>
 
-      <PortfolioDialog
-        open={dialogOpen}
-        onClose={() => setDialogOpen(false)}
-        portfolioName={portfolioName}
-        setPortfolioName={setPortfolioName}
-        onCreate={handleCreatePortfolio}
-      />
-
-      {portfolios?.length === 0 ? (
-        <Typography>No portfolios yet. Create one to get started.</Typography>
-      ) : (
-        selectedPortfolio && (
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={6}>
-              <AssetForm
-                asset={asset}
-                setAsset={setAsset}
-                onAddAsset={handleAddAsset}
-                isLoading={addAsset.isPending}
+              <PortfolioSelector
+                portfolios={portfolios}
+                selectedPortfolio={selectedPortfolio}
+                onChange={setSelectedPortfolio}
               />
+            </Box>
+          )}
+        </div>
+
+        <Divider sx={{ my: 2 }} />
+
+        <PortfolioDialog
+          open={dialogOpen}
+          onClose={() => setDialogOpen(false)}
+          portfolioName={portfolioName}
+          setPortfolioName={setPortfolioName}
+          onCreate={handleCreatePortfolio}
+        />
+
+        {(!portfolios || portfolios.length === 0) ? (
+          <Box className="empty-state">
+            <Typography variant="body1" color="text.secondary">
+              No portfolios yet. Create one to get started.
+            </Typography>
+            <Button
+              variant="contained"
+              color="primary"
+              className="create-btn"
+              onClick={() => setDialogOpen(true)}
+              startIcon={<AddCircleOutline />}
+            >
+              {dashboardConfig.buttons.createPortfolio}
+            </Button>
+          </Box>
+        ) : (
+          selectedPortfolio && (
+            <Grid container spacing={3}>
+              <Grid item xs={12} md={6}>
+                <AssetForm
+                  asset={asset}
+                  setAsset={setAsset}
+                  onAddAsset={handleAddAsset}
+                  isLoading={addAsset.isPending}
+                />
+              </Grid>
+
+              <Grid item xs={12} md={6}>
+                <Charts
+                  pieData={pieData}
+                  lineData={lineData}
+                  selectedTicker={selectedTicker}
+                  historicalLoading={historicalLoading}
+                />
+              </Grid>
+
+              {portfolioData?.assets?.length > 0 && (
+                <>
+                  <Grid item xs={12}>
+                    <AssetTable
+                      assets={portfolioData.assets}
+                      onRemoveAsset={(ticker) => removeAsset.mutateAsync(ticker)}
+                      onViewHistorical={setSelectedTicker}
+                    />
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <Insights insights={insights} />
+                  </Grid>
+                </>
+              )}
             </Grid>
-
-            <Grid item xs={12} md={6}>
-              <Charts
-                pieData={pieData}
-                lineData={lineData}
-                selectedTicker={selectedTicker}
-                historicalLoading={historicalLoading}
-              />
-            </Grid>
-
-            {portfolioData?.assets?.length > 0 && (
-              <>
-                <Grid item xs={12}>
-                  <AssetTable
-                    assets={portfolioData.assets}
-                    onRemoveAsset={(ticker) => removeAsset.mutateAsync(ticker)}
-                    onViewHistorical={setSelectedTicker}
-                  />
-                </Grid>
-
-                <Grid item xs={12}>
-                  <Insights insights={insights} />
-                </Grid>
-              </>
-            )}
-          </Grid>
-        )
-      )}
-    </Container>
+          )
+        )}
+      </Container>
+    </Box>
   );
 };
 

@@ -17,6 +17,7 @@ import FormRenderer from "../components/FormRenderer";
 import loginConfig from "../json/login.json";
 import { useLoginMutation, useRegisterMutation } from "../api/hooks";
 import { setToken } from "../redux/slice/authSlice";
+import "./login.css"
 
 const Login = () => {
   const [form, setForm] = useState({ username: "", password: "" });
@@ -62,12 +63,12 @@ const Login = () => {
               variant="h4"
               align="center"
               fontWeight={600}
-              sx={{ color: "primary.main", mb: 2 }}
+              sx={{ color: "primary.main", mb: 3 }}
             >
               {isRegister ? loginConfig.title.register : loginConfig.title.login}
             </Typography>
 
-            <Divider sx={{ mb: 3 }} />
+            <Divider sx={{ mb: 4 }} />
 
             <Box className="form-section">
               <FormRenderer

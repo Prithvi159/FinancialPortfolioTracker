@@ -1,7 +1,34 @@
-.dashboard-container {
-  padding: 32px;
-  background-color: #f9fafc;
+.dashboard-page {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(145deg, #f3f6fc 0%, #e8eef9 100%);
+  font-family: "Inter", "Roboto", sans-serif;
+}
+
+.dashboard-header-bar {
+  background-color: #1976d2 !important;
+  color: white !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+.dashboard-toolbar {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  padding: 0 2rem !important;
+}
+
+.dashboard-brand {
+  font-weight: 700 !important;
+  font-size: 1.5rem !important;
+  letter-spacing: 0.5px !important;
+}
+
+.dashboard-container {
+  flex-grow: 1;
+  padding: 48px 32px !important;
+  background-color: transparent;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -16,31 +43,44 @@
 }
 
 .dashboard-title {
-  font-weight: 700;
+  font-weight: 700 !important;
   color: #1a1a1a;
 }
 
-.portfolio-select {
-  min-width: 250px;
-}
-
 .create-btn {
-  background: linear-gradient(90deg, #1976d2 0%, #42a5f5 100%);
-  color: white;
-  font-weight: 600;
-  border-radius: 8px;
-  text-transform: none;
-  transition: all 0.2s ease;
+  background: linear-gradient(90deg, #1976d2 0%, #42a5f5 100%) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  border-radius: 10px !important;
+  text-transform: none !important;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 3px 10px rgba(25, 118, 210, 0.25) !important;
 }
 
 .create-btn:hover {
-  background: linear-gradient(90deg, #1565c0 0%, #2196f3 100%);
+  background: linear-gradient(90deg, #1565c0 0%, #2196f3 100%) !important;
   transform: translateY(-1px);
+}
+
+.empty-state {
+  text-align: center;
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 @media (max-width: 768px) {
   .dashboard-container {
-    padding: 16px;
+    padding: 24px 16px !important;
   }
 
   .dashboard-header {
@@ -49,7 +89,7 @@
     gap: 12px;
   }
 
-  .portfolio-select {
-    width: 100%;
+  .dashboard-brand {
+    font-size: 1.3rem !important;
   }
 }
