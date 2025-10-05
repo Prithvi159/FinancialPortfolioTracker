@@ -32,7 +32,7 @@ This project follows **clean architecture**, **industry-standard folder structur
 ### 🔹 High-Level Architecture
 ```mermaid
 graph TD
-    A[Frontend - React.js (Vercel)] -->|HTTPS / REST API Calls| B[Backend - Spring Boot (Render)]
+    A[Frontend - React Vite (Vercel)] -->|HTTPS / REST API Calls| B[Backend - Spring Boot (Render)]
     B -->|JDBC| C[(PostgreSQL - Render Cloud DB)]
     B -->|External API| D[Alpha Vantage API]
     A -->|JWT Authentication| B
@@ -44,15 +44,17 @@ flowchart TD
     Service --> API[Alpha Vantage API]
     Auth[Spring Security + JWT] --> Controller
 
+
 graph TD
     App[App.jsx] --> Login[Login.jsx]
     App --> Dashboard[Dashboard.jsx]
-    Dashboard --> AssetForm
-    Dashboard --> AssetTable
-    Dashboard --> Charts
-    Dashboard --> Insights
-    Dashboard --> PortfolioDialog
-    Dashboard --> PortfolioSelector
+    Dashboard --> AssetForm[AssetForm.jsx]
+    Dashboard --> AssetTable[AssetTable.jsx]
+    Dashboard --> Charts[Charts.jsx]
+    Dashboard --> Insights[Insights.jsx]
+    Dashboard --> PortfolioDialog[PortfolioDialog.jsx]
+    Dashboard --> PortfolioSelector[PortfolioSelector.jsx]
+
 
 sequenceDiagram
     participant User
